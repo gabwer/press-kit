@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gabriel Werlen — Mentalist · Author · Lecturer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,400;1,6..96,500;1,6..96,600&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap">
+<style>
+:root{
+  --ink:#0b0b0c; --ink-2:#131316; --ink-3:#1c1c20;
+  --paper:#f4f0e7; --paper-2:#ece6da; --cream:#faf7f0; --white:#fff;
+  --text:#18181a; --text-soft:#56524b; --muted:#837e74;
+  --on-ink:#efece4; --on-ink-soft:#b0aba0; --on-ink-muted:#79756c;
+  --gold:#c8a24b; --gold-bright:#e0bd66; --gold-deep:#9c7a2c;
+  --accent-tint:rgba(200,162,75,0.12);
+  --line:rgba(20,18,14,0.14); --line-soft:rgba(20,18,14,0.08);
+  --line-dark:rgba(239,236,228,0.16); --line-dark-soft:rgba(239,236,228,0.08);
+  --display:"Bodoni Moda","Didot",Georgia,serif;
+  --body:"Hanken Grotesk",system-ui,sans-serif;
+  --maxw:1180px;
+  --ease:cubic-bezier(0.22,1,0.36,1);
+  --shadow-card:0 18px 50px -24px rgba(40,28,8,0.45);
+  --shadow-photo:0 30px 80px -40px rgba(30,20,6,0.6);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--paper);color:var(--text);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;font-weight:400;}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+em,.it{font-style:italic;color:var(--gold-deep)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(1.4rem,5vw,3rem)}
+
+/* ---------- NAV ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem clamp(1.4rem,5vw,3rem);transition:background .4s var(--ease),backdrop-filter .4s var(--ease),padding .4s var(--ease);}
+.nav.scrolled{background:rgba(11,11,12,0.72);backdrop-filter:blur(14px);padding-top:.8rem;padding-bottom:.8rem;border-bottom:1px solid var(--line-dark-soft);}
+.nav__name{font-family:var(--display);font-size:1.2rem;letter-spacing:.02em;color:var(--on-ink);font-weight:500;}
+.nav__cta{font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;color:var(--on-ink);border:1px solid var(--line-dark);
+  padding:.62rem 1.1rem;border-radius:2px;transition:.35s var(--ease);}
+.nav__cta:hover{border-color:var(--gold);color:var(--gold-bright);transform:translateY(-2px)}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden;background:var(--ink);}
+.hero__photo{position:absolute;inset:0;background:url("assets/cv/conf-hero.jpg") center 30%/cover no-repeat;
+  transform:scale(1.06);animation:slowzoom 18s var(--ease) forwards;}
+@keyframes slowzoom{to{transform:scale(1)}}
+.hero__scrim{position:absolute;inset:0;background:
+  linear-gradient(180deg,rgba(11,11,12,.55) 0%,rgba(11,11,12,.15) 32%,rgba(11,11,12,.55) 66%,rgba(11,11,12,.96) 100%),
+  radial-gradient(120% 90% at 18% 100%,rgba(200,162,75,.10),transparent 55%);}
+.hero__inner{position:relative;z-index:2;padding-bottom:clamp(3.5rem,8vh,6rem);padding-top:8rem;width:100%}
+.hero__eyebrow{display:inline-block;font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-bright);
+  margin-bottom:1.4rem;padding-bottom:.5rem;border-bottom:1px solid rgba(200,162,75,.4);}
+.hero__name{font-family:var(--display);color:var(--on-ink);font-weight:500;font-size:clamp(3.3rem,9vw,7rem);
+  line-height:.96;letter-spacing:-.015em;margin-bottom:1.1rem;}
+.hero__tagline{font-family:var(--display);font-style:italic;font-size:clamp(1.3rem,3vw,2.1rem);color:var(--on-ink);
+  font-weight:400;line-height:1.2;max-width:42ch;margin-bottom:2rem;}
+.facts{display:flex;flex-wrap:wrap;gap:.6rem 1.6rem;}
+.fact{display:inline-flex;align-items:center;gap:.6rem;font-size:.86rem;letter-spacing:.04em;color:var(--on-ink-soft);}
+.fact::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--gold);}
+
+/* ---------- SECTIONS ---------- */
+.section{padding:clamp(4.5rem,9vw,7.5rem) 0;}
+.cream{background:var(--cream);}
+.dark{background:var(--ink);color:var(--on-ink);}
+.kicker{display:flex;align-items:baseline;gap:.9rem;margin-bottom:1.4rem;}
+.kicker__n{font-family:var(--display);font-size:.95rem;color:var(--gold-deep);letter-spacing:.04em;}
+.dark .kicker__n{color:var(--gold-bright)}
+.kicker__t{font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);}
+.dark .kicker__t{color:var(--on-ink-muted)}
+.h{font-family:var(--display);font-weight:500;font-size:clamp(2rem,4.4vw,3.4rem);line-height:1.02;letter-spacing:-.012em;}
+.dark .h{color:var(--on-ink)}
+.lead{font-size:clamp(1.05rem,1.6vw,1.25rem);line-height:1.6;color:var(--text-soft);max-width:62ch;}
+.dark .lead{color:var(--on-ink-soft)}
+
+/* ---------- PROFILE ---------- */
+.profile{display:grid;grid-template-columns:1.25fr .9fr;gap:clamp(2rem,5vw,4.5rem);align-items:start;}
+.profile__text .lead{margin-top:1.4rem}
+.profile__text .h{margin-bottom:.4rem}
+.profile__portrait img{width:100%;border-radius:2px;box-shadow:var(--shadow-photo);cursor:zoom-in;}
+.profile__portrait figcaption{margin-top:.9rem;font-size:.8rem;letter-spacing:.04em;color:var(--muted);}
+
+/* ---------- TIMELINE ---------- */
+.tl{margin-top:clamp(2rem,4vw,3rem);border-top:1px solid var(--line);}
+.tl__row{display:grid;grid-template-columns:5.5rem 7rem 1fr;gap:clamp(1rem,2.5vw,2.2rem);align-items:center;
+  padding:1.5rem 0;border-bottom:1px solid var(--line);transition:.4s var(--ease);}
+.tl__row:hover{transform:translateX(4px)}
+.tl__year{font-family:var(--display);font-size:1rem;color:var(--gold-deep);letter-spacing:.02em;}
+.tl__thumb{width:7rem;height:4.6rem;overflow:hidden;border-radius:2px;background:var(--paper-2);box-shadow:var(--shadow-card);cursor:zoom-in;}
+.tl__thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease);}
+.tl__row:hover .tl__thumb img{transform:scale(1.07)}
+.tl__main h3{font-family:var(--display);font-weight:500;font-size:1.35rem;line-height:1.1;margin-bottom:.25rem;}
+.tl__main p{font-size:.96rem;color:var(--text-soft);max-width:60ch;line-height:1.5;}
+.tl__place{display:inline-block;margin-top:.45rem;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+
+/* ---------- CARD STRIP ---------- */
+.strip{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.2rem,2.5vw,2rem);margin-top:clamp(2rem,4vw,3rem);}
+.card{background:var(--white);border:1px solid var(--line-soft);border-radius:2px;overflow:hidden;
+  box-shadow:var(--shadow-card);transition:.45s var(--ease);}
+.dark .card{background:var(--ink-2);border-color:var(--line-dark-soft);}
+.card:hover{transform:translateY(-4px)}
+.card__media{aspect-ratio:16/10;overflow:hidden;background:var(--paper-2);cursor:zoom-in;}
+.dark .card__media{background:var(--ink-3)}
+.card__media img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease);}
+.card:hover .card__media img{transform:scale(1.05)}
+.strip--posters .card__media{aspect-ratio:4/3;background:var(--ink);padding:0;}
+.strip--posters .card__media img{object-fit:contain;}
+.strip--posters .card:hover .card__media img{transform:none}
+.card__body{padding:1.3rem 1.4rem 1.5rem;}
+.card__tag{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-deep);}
+.dark .card__tag{color:var(--gold-bright)}
+.card__title{font-family:var(--display);font-weight:500;font-size:1.3rem;line-height:1.12;margin:.5rem 0 .5rem;}
+.card__desc{font-size:.92rem;color:var(--text-soft);line-height:1.55;}
+.dark .card__desc{color:var(--on-ink-soft)}
+
+/* ---------- GALLERY ---------- */
+.galhead{font-family:var(--display);font-weight:500;font-size:1.25rem;letter-spacing:.02em;
+  margin:clamp(2rem,4vw,3rem) 0 1.4rem;padding-bottom:.6rem;border-bottom:1px solid var(--line);color:var(--text);}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:clamp(1.4rem,3vw,2.4rem);}
+.item__media{aspect-ratio:4/3;overflow:hidden;border-radius:2px;background:var(--ink);box-shadow:var(--shadow-card);margin-bottom:.9rem;cursor:zoom-in;}
+.item__media img{width:100%;height:100%;object-fit:contain;transition:transform .6s var(--ease);}
+.item:hover .item__media img{transform:scale(1.04)}
+.item__cat{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);}
+.item__title{font-family:var(--display);font-weight:500;font-size:1.2rem;line-height:1.1;margin:.35rem 0 .4rem;}
+.item__desc{font-size:.88rem;color:var(--text-soft);line-height:1.5;}
+
+/* ---------- QUOTES ---------- */
+.quote-lead{max-width:50rem;margin:0 0 clamp(2.4rem,5vw,3.5rem);}
+.quote-lead p{font-family:var(--display);font-size:clamp(1.4rem,2.7vw,2.1rem);line-height:1.28;color:var(--on-ink);font-weight:400;}
+.quote-lead cite{display:block;margin-top:1.1rem;font-family:var(--body);font-style:normal;font-size:.82rem;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--gold-bright);}
+.quotes{columns:2;column-gap:clamp(2rem,4vw,3.5rem);}
+.quote{break-inside:avoid;margin-bottom:clamp(1.6rem,3vw,2.4rem);padding-left:1.2rem;border-left:1px solid var(--line-dark);}
+.quote p{font-size:1rem;line-height:1.55;color:var(--on-ink-soft);}
+.quote cite{display:block;margin-top:.6rem;font-style:normal;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--on-ink-muted);}
+
+/* ---------- LINKS ---------- */
+.links{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1rem,2.5vw,1.6rem);margin-top:clamp(2rem,4vw,3rem);}
+.link{display:flex;align-items:center;gap:1.1rem;padding:1.4rem 1.5rem;background:var(--white);border:1px solid var(--line-soft);
+  border-radius:2px;box-shadow:var(--shadow-card);transition:.4s var(--ease);}
+.link:hover{transform:translateY(-3px);border-color:var(--gold)}
+.link__ic{flex:none;width:42px;height:42px;display:grid;place-items:center;border-radius:50%;background:var(--accent-tint);color:var(--gold-deep);}
+.link__body{flex:1}
+.link__t{display:block;font-family:var(--display);font-size:1.12rem;font-weight:500;line-height:1.15;}
+.link__sub{display:block;font-size:.85rem;color:var(--text-soft);margin-top:.15rem;}
+.link__go{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep);white-space:nowrap;}
+.link__go .arrow{transition:transform .35s var(--ease);display:inline-block}
+.link:hover .link__go .arrow{transform:translateX(4px)}
+
+/* ---------- CTA ---------- */
+.cta{position:relative;background:var(--ink);color:var(--on-ink);padding:clamp(5rem,10vw,8rem) 0;overflow:hidden;}
+.cta__bg{position:absolute;inset:0;background:radial-gradient(90% 120% at 80% 0%,rgba(200,162,75,.16),transparent 55%);}
+.cta__inner{position:relative;z-index:2}
+.cta__title{font-family:var(--display);font-weight:500;font-size:clamp(2rem,4.6vw,3.6rem);line-height:1.05;letter-spacing:-.012em;margin:1rem 0 1rem;}
+.cta__lead{color:var(--on-ink-soft);max-width:52ch;font-size:1.1rem;}
+.coords{display:flex;flex-wrap:wrap;gap:.8rem 1rem;margin-top:2.4rem;}
+.coord{display:inline-flex;align-items:center;gap:.7rem;padding:.9rem 1.3rem;border:1px solid var(--line-dark);border-radius:2px;
+  font-size:.95rem;letter-spacing:.02em;transition:.4s var(--ease);}
+.coord:hover{border-color:var(--gold);color:var(--gold-bright);transform:translateY(-2px)}
+.coord svg{color:var(--gold-bright)}
+
+/* ---------- FOOTER ---------- */
+.foot{background:var(--ink);color:var(--on-ink-muted);border-top:1px solid var(--line-dark-soft);padding:2.4rem 0;}
+.foot__inner{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.8rem;font-size:.82rem;letter-spacing:.03em;}
+.foot b{color:var(--on-ink-soft);font-weight:500}
+
+/* ---------- REVEAL ---------- */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease);}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.hero__photo{animation:none;transform:none}}
+
+/* ---------- LIGHTBOX ---------- */
+.lb{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;
+  background:rgba(8,8,9,0.92);backdrop-filter:blur(6px);opacity:0;visibility:hidden;transition:opacity .35s var(--ease),visibility .35s var(--ease);cursor:zoom-out;padding:clamp(1.5rem,5vw,4rem);}
+.lb.open{opacity:1;visibility:visible}
+.lb figure{margin:0;max-width:92vw;max-height:90vh;display:flex;flex-direction:column;align-items:center;gap:1rem;transform:scale(.96);transition:transform .4s var(--ease);}
+.lb.open figure{transform:scale(1)}
+.lb img{max-width:92vw;max-height:80vh;width:auto;height:auto;object-fit:contain;border-radius:2px;box-shadow:0 40px 100px -30px rgba(0,0,0,.8);}
+.lb__video{display:none;position:relative;width:min(92vw,1100px);aspect-ratio:16/9;border-radius:2px;overflow:hidden;box-shadow:0 40px 100px -30px rgba(0,0,0,.8);}
+.lb__video iframe{width:100%;height:100%;border:0;display:block;}
+.lb__poster{position:absolute;inset:0;cursor:pointer;}
+.lb__poster img{width:100%;height:100%;max-width:none;max-height:none;object-fit:cover;border-radius:0;box-shadow:none;display:block;}
+.lb__poster::after{content:"";position:absolute;inset:0;background:rgba(8,8,9,.28);transition:background .3s var(--ease);}
+.lb__poster:hover::after{background:rgba(8,8,9,.12)}
+.lb__play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:74px;height:74px;border-radius:50%;
+  background:rgba(11,11,12,.55);border:1px solid var(--gold);display:grid;place-items:center;color:var(--gold-bright);z-index:2;transition:.3s var(--ease);}
+.lb__poster:hover .lb__play{background:var(--gold);color:var(--ink);transform:translate(-50%,-50%) scale(1.06)}
+.lb.is-video #lbImg{display:none}
+.lb.is-video .lb__video{display:block}
+.lb figcaption{font-family:var(--display);font-style:italic;color:var(--on-ink);font-size:clamp(1rem,2vw,1.35rem);text-align:center;}
+.lb__close{position:absolute;top:1.4rem;right:1.6rem;width:44px;height:44px;display:grid;place-items:center;border:1px solid var(--line-dark);
+  border-radius:50%;color:var(--on-ink);background:rgba(20,20,22,.6);cursor:pointer;transition:.3s var(--ease);}
+.lb__close:hover{border-color:var(--gold);color:var(--gold-bright)}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:880px){
+  .profile{grid-template-columns:1fr}
+  .profile__portrait{max-width:380px}
+  .strip{grid-template-columns:1fr}
+  .quotes{columns:1}
+  .links{grid-template-columns:1fr}
+  .tl__row{grid-template-columns:4rem 1fr;}
+  .tl__thumb{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a class="nav__name" href="#top">Gabriel Werlen</a>
+  <a class="nav__cta" href="#booking">Booking</a>
+</nav>
+
+<main id="top">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero__photo" aria-hidden="true"></div>
+    <div class="hero__scrim" aria-hidden="true"></div>
+    <div class="wrap hero__inner">
+      <span class="hero__eyebrow reveal">Propless mentalism — profile &amp; press kit</span>
+      <h1 class="hero__name reveal d1">Gabriel Werlen</h1>
+      <p class="hero__tagline reveal d2">Mentalist — Author — Shaper of perception</p>
+      <div class="facts reveal d2">
+        <span class="fact">20+ years creating, performing &amp; publishing mentalism</span>
+        <span class="fact">Performs in EN &amp; FR</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- 01 PROFILE -->
+  <section class="section">
+    <div class="wrap profile">
+      <div class="profile__text">
+        <div class="kicker reveal"><span class="kicker__n">01</span><span class="kicker__t">Profile</span></div>
+        <h2 class="h reveal">The art of shaping perception</h2>
+        <p class="lead reveal">For over twenty years, Gabriel Werlen has pushed the boundaries of mentalism — combining scientific rigour with artistic creativity to craft pure illusions that come to life directly in the spectator's mind, by subtly playing with their perceptions.</p>
+        <p class="lead reveal">An engineer by training (CentraleSupélec) and a former corporate executive, he is today recognised as one of the foremost creators of propless, impromptu method. Author of six books — including The Green Neck System and Iceberg — his work has captivated peers such as Derren Brown, Michael Weber and Michael Murray.</p>
+      </div>
+      <figure class="profile__portrait reveal d1">
+        <img src="assets/cv/magic-castle-parlour-2026.jpg" alt="Gabriel Werlen performing at The Magic Castle">
+        <figcaption>Gabriel Werlen — The Magic Castle, Hollywood · 2026</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 02 APPEARANCES -->
+  <section class="section cream">
+    <div class="wrap">
+      <div class="kicker reveal"><span class="kicker__n">02</span><span class="kicker__t">On stage &amp; in demand</span></div>
+      <h2 class="h reveal">Selected <span class="it">appearances</span></h2>
+      <div class="tl">
+        <div class="tl__row reveal"><span class="tl__year">2026</span><span class="tl__thumb"><img src="assets/cv/magic-castle.jpg" alt="The Magic Castle" loading="lazy"></span><div class="tl__main"><h3>The Magic Castle</h3><p>Parlour performances at the legendary home of magic.</p><span class="tl__place">Hollywood, Los Angeles</span></div></div>
+        <div class="tl__row reveal"><span class="tl__year">2026</span><span class="tl__thumb"><img src="assets/cv/masters-washington.png" alt="Masters of Magic at Maryland" loading="lazy"></span><div class="tl__main"><h3>Masters of Magic at Maryland</h3><p>Gala show at the Clarice Performing Arts Center, alongside the First International Conference on Mathematics &amp; Magic.</p><span class="tl__place">University of Maryland</span></div></div>
+        <div class="tl__row reveal"><span class="tl__year">2025</span><span class="tl__thumb" data-video="CnhOxYBNCrQ"><img src="assets/cv/fool-us.jpg" alt="Penn &amp; Teller: Fool Us" loading="lazy"></span><div class="tl__main"><h3>Penn &amp; Teller: Fool Us</h3><p>Featured performer with "The Illusion of Free Will", praised for its clear, elegant mentalism.</p><span class="tl__place">Las Vegas</span></div></div>
+        <div class="tl__row reveal"><span class="tl__year">2024</span><span class="tl__thumb"><img src="assets/cv/magic-live.jpg" alt="Magic Live!" loading="lazy"></span><div class="tl__main"><h3>Magic Live</h3><p>Featured lecturer — four focus sessions.</p><span class="tl__place">Las Vegas</span></div></div>
+        <div class="tl__row reveal"><span class="tl__year">2024</span><span class="tl__thumb"><img src="assets/cv/promystic.jpg" alt="Promystic Summit" loading="lazy"></span><div class="tl__main"><h3>Promystic Summit</h3><p>Headlining artist — 3 days of exclusive shows and lectures for an elite gathering of mentalists.</p><span class="tl__place">Las Vegas</span></div></div>
+        <div class="tl__row reveal"><span class="tl__year">2023</span><span class="tl__thumb"><img src="assets/cv/minds.jpg" alt="MINDS Convention" loading="lazy"></span><div class="tl__main"><h3>MINDS Convention</h3><p>Invited by Michael Murray to deliver a headline lecture and performance.</p><span class="tl__place">Newcastle, UK</span></div></div>
+        <div class="tl__row reveal"><span class="tl__year">2022</span><span class="tl__thumb"><img src="assets/cv/french-convention.jpg" alt="French Magic Convention" loading="lazy"></span><div class="tl__main"><h3>French Magic Convention</h3><p>Invited performer and lecturer at the national FFAP gathering.</p><span class="tl__place">France</span></div></div>
+        <div class="tl__row reveal"><span class="tl__year">2025–2026</span><span class="tl__thumb"><img src="assets/cv/double-fond.jpg" alt="Ils ont grandi pendant la nuit" loading="lazy"></span><div class="tl__main"><h3>Ils ont grandi pendant la nuit</h3><p>Author, director and performer of an intimate theatrical show on chance, intuition and luck.</p><span class="tl__place">Le Double Fond, Paris</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 HONOURS -->
+  <section class="section">
+    <div class="wrap">
+      <div class="kicker reveal"><span class="kicker__n">03</span><span class="kicker__t">Honours &amp; juries</span></div>
+      <h2 class="h reveal">Recognised by the <span class="it">profession</span></h2>
+      <div class="strip strip--posters">
+        <article class="card reveal"><div class="card__media" data-video="UqxLUWYr8kw"><img src="assets/cv/penguin-live.png" alt="Penguin Live" loading="lazy"></div><div class="card__body"><span class="card__tag">Penguin Live · 2025</span><h3 class="card__title">Lecture of the Year</h3><p class="card__desc">Highest-rated magic download in five years, for its groundbreaking propless mind-reading techniques.</p></div></article>
+        <article class="card reveal d1"><div class="card__media"><img src="assets/cv/nostradamus.jpg" alt="Nostradamus d'Or" loading="lazy"></div><div class="card__body"><span class="card__tag">Jury · 2026</span><h3 class="card__title">Nostradamus d'Or</h3><p class="card__desc">Jury member of the Nostradamus European Mentalism Championship.</p></div></article>
+        <article class="card reveal d2"><div class="card__media"><img src="assets/cv/jury-championship.jpg" alt="French Magic Championship" loading="lazy"></div><div class="card__body"><span class="card__tag">Jury · 2023</span><h3 class="card__title">French Magic Championship</h3><p class="card__desc">Jury member of the national magic championship.</p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 CREATIONS -->
+  <section class="section cream">
+    <div class="wrap">
+      <div class="kicker reveal"><span class="kicker__n">04</span><span class="kicker__t">Creations</span></div>
+      <h2 class="h reveal">Books &amp; <span class="it">marketed effects</span></h2>
+      <p class="lead reveal" style="margin-top:1.2rem">A body of reference work for the mentalism community — from the landmark <em>Green Neck System</em> to routines performed by professionals worldwide.</p>
+
+      <h3 class="galhead reveal">Books</h3>
+      <div class="gallery">
+        <article class="item reveal"><div class="item__media"><img src="assets/cv/gns.jpg" alt="The Green Neck System" loading="lazy"></div><span class="item__cat">Mindbox &amp; Marchand de Trucs · 2017</span><h4 class="item__title">The Green Neck System</h4><p class="item__desc">A landmark treatise on a versatile psychological principle to locate hidden objects and divine thoughts — with zero props.</p></article>
+        <article class="item reveal"><div class="item__media"><img src="assets/cv/gns2.jpg" alt="The Green Neck System 2" loading="lazy"></div><span class="item__cat">Mindbox &amp; Marchand de Trucs · 2022</span><h4 class="item__title">The Green Neck System 2</h4><p class="item__desc">The eagerly awaited second volume, expanding the core system with advanced, practical performance ideas.</p></article>
+        <article class="item reveal"><div class="item__media"><img src="assets/cv/iceberg.webp" alt="Iceberg" loading="lazy"></div><span class="item__cat">Mindbox &amp; Marchand de Trucs · 2020</span><h4 class="item__title">Iceberg</h4><p class="item__desc">Modern, impromptu mentalism — subtle methodologies and structured psychological presentations.</p></article>
+        <article class="item reveal"><div class="item__media"><img src="assets/cv/shaping.jpg" alt="The Art of Shaping Perceptions" loading="lazy"></div><span class="item__cat">Limited edition · 2023</span><h4 class="item__title">The Art of Shaping Perceptions</h4><p class="item__desc">A sought-after work on impromptu mentalism and the craft of psychological suggestion.</p></article>
+        <article class="item reveal"><div class="item__media"><img src="assets/cv/double-tour.png" alt="À double tour" loading="lazy"></div><span class="item__cat">Mindbox &amp; Marchand de Trucs · 2022</span><h4 class="item__title">À double tour</h4><p class="item__desc">Two powerful impromptu nuggets, including the renowned "Ultimate Free Will" routine.</p></article>
+        <article class="item reveal"><div class="item__media"><img src="assets/cv/memento.webp" alt="Memento" loading="lazy"></div><span class="item__cat">Mindbox &amp; Marchand de Trucs · 2022</span><h4 class="item__title">Memento</h4><p class="item__desc">A powerful routine blending storytelling, memories and precise psychological triggers.</p></article>
+      </div>
+
+      <h3 class="galhead reveal">Marketed effects &amp; releases</h3>
+      <div class="gallery">
+        <article class="item reveal"><div class="item__media"><img src="assets/cv/absolute-free-will.jpg" alt="Absolute Free Will" loading="lazy"></div><span class="item__cat">Marketed routine</span><h4 class="item__title">Absolute Free Will</h4><p class="item__desc">A pristine free-will plot: unforced choices that perfectly match a visible prediction.</p></article>
+        <article class="item reveal"><div class="item__media"><img src="assets/cv/heritage.png" alt="Heritage" loading="lazy"></div><span class="item__cat">Marketed effect</span><h4 class="item__title">Heritage</h4><p class="item__desc">One of the cleanest, purest thought-of-card predictions ever devised.</p></article>
+        <article class="item reveal"><div class="item__media"><img src="assets/cv/devils-cups.png" alt="Devil's Cups" loading="lazy"></div><span class="item__cat">Marketed effect</span><h4 class="item__title">Devil's Cups</h4><p class="item__desc">A diabolical, real-world tested method to locate a hidden object among shuffled metal cups.</p></article>
+        <article class="item reveal"><div class="item__media"><img src="assets/cv/know-way.webp" alt="Know Way" loading="lazy"></div><span class="item__cat">Marketed effect</span><h4 class="item__title">Know Way</h4><p class="item__desc">Elegant mentalism built on meticulous scripting and subtle psychological layering.</p></article>
+        <article class="item reveal"><div class="item__media"><img src="assets/cv/tenyo.jpg" alt="Mental Cats" loading="lazy"></div><span class="item__cat">Tenyo, Japan · 2024</span><h4 class="item__title">Mental Cats</h4><p class="item__desc">A commercial release by Tenyo, the celebrated Japanese magic manufacturer.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 QUOTES -->
+  <section class="section dark">
+    <div class="wrap">
+      <div class="kicker reveal"><span class="kicker__n">05</span><span class="kicker__t">In their words</span></div>
+      <figure class="quote-lead reveal">
+        <p>"Gabriel Werlen will go down in history as one of the 21st Century's greatest mentalism creators. He has fooled me more times than any mentalist I have ever met — and his material isn't just fooling, it's delightfully clever."</p>
+        <cite>Mark Elsdon</cite>
+      </figure>
+      <div class="quotes">
+        <figure class="quote reveal"><p>"Gabriel, your magic is wonderful."</p><cite>David Copperfield</cite></figure>
+        <figure class="quote reveal"><p>"Gabriel, thank you for the inspiration."</p><cite>Derren Brown</cite></figure>
+        <figure class="quote reveal"><p>"Gabriel is one of my all-time favourite creators. Everything he releases is GOLD!"</p><cite>Michael Murray</cite></figure>
+        <figure class="quote reveal"><p>"I love Gabriel's approach to mentalism. His subtle, and sneaky, methods are a joy to discover in a lecture packed full of real-world tested routines."</p><cite>Jon Allen</cite></figure>
+        <figure class="quote reveal"><p>"Combining new sophisticated principles with smart presentations, Gabriel amazed me over and over again. I didn't stand a chance."</p><cite>John Bannon</cite></figure>
+        <figure class="quote reveal"><p>"Inexplicable and deeply fooling mysteries that will make your audience's head spin. Created by the diabolical mind of the Werlen Dervish!"</p><cite>Raj Madhok</cite></figure>
+        <figure class="quote reveal"><p>"Gabriel Werlen's 'Green Neck System' is a testament to his genius. He stands as a true visionary in the field."</p><cite>Paul Brook</cite></figure>
+        <figure class="quote reveal"><p>"To see Gabriel is to be fooled. Ingenious, practical, fooling thinking."</p><cite>Tim Trono</cite></figure>
+        <figure class="quote reveal"><p>"For his obsession with psychology, his attention to detail and the subtlety of his ploys, Gabriel is definitely a traveling companion. His work will inspire you."</p><cite>Phedon Bilek</cite></figure>
+        <figure class="quote reveal"><p>"I adore Gabriel, he is a genius! His 'Green Neck System' is unbelievable and incredibly versatile. Truly my highest recommendation!"</p><cite>Jan Forster</cite></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 PRESS -->
+  <section class="section">
+    <div class="wrap">
+      <div class="kicker reveal"><span class="kicker__n">06</span><span class="kicker__t">Press &amp; peers</span></div>
+      <h2 class="h reveal">In the <span class="it">spotlight</span></h2>
+      <div class="strip">
+        <article class="card reveal"><div class="card__media"><img src="assets/cv/vanish.jpg" alt="Vanish Magazine" loading="lazy"></div><div class="card__body"><span class="card__tag">Magazine · 2026</span><h3 class="card__title">Vanish Magazine</h3><p class="card__desc">Featured in the international magic publication.</p></div></article>
+        <article class="card reveal d1"><div class="card__media"><img src="assets/cv/ordre-europeen.jpg" alt="European Order of Mentalism" loading="lazy"></div><div class="card__body"><span class="card__tag">Cover · Review</span><h3 class="card__title">European Order of Mentalism</h3><p class="card__desc">Cover of the review of the Ordre Européen de Mentalisme.</p></div></article>
+        <article class="card reveal d2"><div class="card__media"><img src="assets/cv/copperfield.jpg" alt="With David Copperfield" loading="lazy"></div><div class="card__body"><span class="card__tag">Peers · Las Vegas 2024</span><h3 class="card__title">With David Copperfield</h3><p class="card__desc">Sharing his work with one of the most celebrated names in magic.</p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 LISTEN & WATCH -->
+  <section class="section cream">
+    <div class="wrap">
+      <div class="kicker reveal"><span class="kicker__n">07</span><span class="kicker__t">Listen &amp; watch</span></div>
+      <h2 class="h reveal">Hear him <span class="it">think</span></h2>
+      <div class="links">
+        <a class="link reveal" href="https://podcasts.apple.com/gb/podcast/gabriel-werlen-the-master-of-propless-mentalism-s6e26/id1479053665?i=1000703077995" target="_blank" rel="noopener">
+          <span class="link__ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="11" r="8"></circle><circle cx="12" cy="11" r="2.6"></circle><path d="M12 19v2"></path></svg></span>
+          <span class="link__body"><span class="link__t">Penguin Magic Podcast</span><span class="link__sub">"Gabriel Werlen — The Master of Propless Mentalism"</span></span>
+          <span class="link__go">Apple Podcasts <span class="arrow">→</span></span>
+        </a>
+        <a class="link reveal" href="https://www.youtube.com/watch?v=UqxLUWYr8kw" target="_blank" rel="noopener">
+          <span class="link__ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5l13 7-13 7z"></path></svg></span>
+          <span class="link__body"><span class="link__t">Penguin LIVE — full lecture</span><span class="link__sub">Lecture of the Year 2025 · propless mind-reading</span></span>
+          <span class="link__go">Watch on YouTube <span class="arrow">→</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING -->
+  <section class="cta" id="booking">
+    <div class="cta__bg" aria-hidden="true"></div>
+    <div class="wrap cta__inner">
+      <div class="kicker reveal"><span class="kicker__t">Booking &amp; enquiries</span></div>
+      <h2 class="cta__title reveal">Available worldwide for conventions,<br>gala shows &amp; <span class="it">lectures</span>.</h2>
+      <p class="cta__lead reveal">For programming, lectures for mentalists or press requests — get in touch directly.</p>
+      <div class="coords reveal d1">
+        <a class="coord" href="mailto:gabriel@werlen.art"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg>gabriel@werlen.art</a>
+        <a class="coord" href="https://werlen.art" target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"></path></svg>werlen.art</a>
+        <a class="coord" href="https://www.linkedin.com/in/gabriel-werlen/" target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M8 10v6M8 7v.01M12 16v-3a2 2 0 0 1 4 0v3"></path></svg>LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div class="wrap foot__inner">
+      <span>© 2026 Gabriel Werlen — <b>Mentalist — Author — Shaper of perception</b></span>
+      <span>Propless mentalism · Shows &amp; lectures · France &amp; International</span>
+    </div>
+  </footer>
+
+</main>
+
+<div class="lb" id="lightbox" aria-hidden="true">
+  <button class="lb__close" id="lbClose" aria-label="Close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+  <figure><img id="lbImg" alt=""><div class="lb__video" id="lbVideo"></div><figcaption id="lbCap"></figcaption></figure>
+</div>
+
+<script>
+const nav=document.getElementById('nav');
+const onScroll=()=>nav.classList.toggle('scrolled',window.scrollY>40);
+onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+const lb=document.getElementById('lightbox'),lbImg=document.getElementById('lbImg'),lbCap=document.getElementById('lbCap'),lbVideo=document.getElementById('lbVideo');
+const openLb=(src,cap)=>{lb.classList.remove('is-video');lbVideo.innerHTML='';lbImg.src=src;lbImg.alt=cap;lbCap.textContent=cap;lb.classList.add('open');lb.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';};
+const openVideo=(id,cap,poster)=>{lb.classList.add('is-video');lbCap.textContent=cap;
+  lbVideo.innerHTML='<div class="lb__poster"><img src="'+poster+'" alt="'+cap+'"><span class="lb__play"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M7 5l13 7-13 7z"></path></svg></span></div>';
+  lbVideo.querySelector('.lb__poster').addEventListener('click',()=>{lbVideo.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&playsinline=1" title="'+cap+'" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe>';});
+  lb.classList.add('open');lb.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';};
+const closeLb=()=>{lb.classList.remove('open');lb.setAttribute('aria-hidden','true');lbVideo.innerHTML='';document.body.style.overflow='';};
+document.querySelectorAll('.tl__thumb').forEach(t=>{
+  const img=t.querySelector('img');if(!img)return;
+  t.addEventListener('click',()=>{
+    const row=t.closest('.tl__row');const title=row?row.querySelector('h3').textContent:img.alt;
+    const vid=t.getAttribute('data-video');
+    if(vid)openVideo(vid,title,img.src);else openLb(img.src,title);
+  });
+});
+document.querySelectorAll('.card__media, .item__media, .profile__portrait').forEach(box=>{
+  const img=box.querySelector('img');if(!img)return;
+  box.style.cursor='zoom-in';
+  box.addEventListener('click',()=>{
+    const art=box.closest('article, figure');
+    const titleEl=art?art.querySelector('h3, h4, figcaption'):null;
+    const title=titleEl?titleEl.textContent.trim():img.alt;
+    const vid=box.getAttribute('data-video');
+    if(vid)openVideo(vid,title,img.src);else openLb(img.src,title);
+  });
+});
+lb.addEventListener('click',e=>{if(e.target===lb||e.target.closest('.lb__close'))closeLb();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb();});
+</script>
+</body>
+</html>
